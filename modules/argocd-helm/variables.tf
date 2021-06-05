@@ -58,6 +58,12 @@ variable "argocd" {
   default     = {}
 }
 
+variable "kubernetes_dashboard" {
+  description = "Dashboard settings"
+  type        = any
+  default     = {}
+}
+
 variable "grafana" {
   description = "Grafana settings"
   type        = any

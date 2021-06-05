@@ -1,0 +1,10 @@
+---
+apiVersion: "v2"
+name: "kubernetes-dashboard"
+version: "0"
+description: |
+  This chart install the kubernetes dashboard.
+dependencies:
+  - name: "kubernetes-dashboard"
+    version: "4.2.0"
+    repository: "https://kubernetes.github.io/dashboard/"

@@ -35,6 +35,7 @@ locals {
         oidc                            = local.oidc
         cookie_secret                   = random_password.oauth2_cookie_secret.result
         minio                           = local.minio
+        kubernetes_dashboard            = local.kubernetes_dashboard
         loki                            = local.loki
         traefik                         = local.traefik
         efs_provisioner                 = local.efs_provisioner

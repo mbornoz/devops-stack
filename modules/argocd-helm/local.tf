@@ -21,6 +21,15 @@ locals {
     var.argocd,
   )
 
+  kubernetes_dashboard_defaults = {
+    enable = true
+    domain = "kubernetes-dashboard.apps.${var.cluster_name}.${var.base_domain}"
+  }
+  kubernetes_dashboard = merge(
+    local.kubernetes_dashboard_defaults,
+    var.kubernetes_dashboard,
+  )
+
   grafana_defaults = {
     enable                   = true
     generic_oauth_extra_args = {}

@@ -1,0 +1,11 @@
+---
+# -- Values passed to the kubernetes dashboard chart
+kubernetes-dashboard:
+  rbac:
+    clusterReadOnlyRole: true
+  resources:
+    limits:
+      cpu: 200m
+  prometheus:
+    serviceMonitor:
+      enabled: true
