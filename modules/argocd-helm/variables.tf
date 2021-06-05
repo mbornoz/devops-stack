@@ -52,6 +52,12 @@ variable "argocd" {
   default     = {}
 }
 
+variable "dashboard" {
+  description = "Dashboard settings"
+  type        = any
+  default     = {}
+}
+
 variable "grafana" {
   description = "Grafana settings"
   type        = any
