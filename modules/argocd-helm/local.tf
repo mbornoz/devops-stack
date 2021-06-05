@@ -21,6 +21,15 @@ locals {
     var.argocd,
   )
 
+  dashboard_defaults = {
+    enable = true
+    domain = "dashboard.apps.${var.cluster_name}.${var.base_domain}"
+  }
+  dashboard = merge(
+    local.dashboard_defaults,
+    var.dashboard,
+  )
+
   grafana_defaults = {
     enable                   = true
     generic_oauth_extra_args = {}

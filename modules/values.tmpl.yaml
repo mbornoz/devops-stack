@@ -25,6 +25,8 @@ apps:
     enabled: ${efs_provisioner.enable}
   keycloak:
     enabled: ${keycloak.enable}
+  dashboard:
+    enabled: true
   kube-prometheus-stack:
     enabled: ${kube_prometheus_stack.enable}
   local-path-provisioner:
@@ -191,6 +193,27 @@ keycloak:
         - "https://${alertmanager.domain}/oauth2/callback"
   keycloakUser:
     password: "${keycloak.admin_password}"
+%{ endif }
+
+%{ if dashboard.enable }
+dashboard:
+  kubernetes-dashboard:
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "${cluster_issuer}"
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        ingress.kubernetes.io/ssl-redirect: "true"
+        kubernetes.io/ingress.allow-http: "false"
+      hosts:
+        - "${dashboard.domain}"
+        - "dashboard.apps.${base_domain}"
+      tls:
+        - secretName: dashboard-tls
+          hosts:
+            - "dashboard.apps.${base_domain}"
+            - "${dashboard.domain}"
 %{ endif }
 
 %{ if kube_prometheus_stack.enable }
